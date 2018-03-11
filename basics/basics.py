@@ -10,11 +10,9 @@ print(bool('0').bit_length())
 
 
 # this is a list
-address = [
-    'Flat Floor Street',
-    '18',
-    'New York'
-]
+address = ['Flat Floor Street', '18', 'I will be removed']
+address.pop(2)
+address.append('New York')
 
 print("The address is: " + address[0] + "," + address[1] + " " + address[2])
 print("The address is: " + address[-3] + "," + address[-2] + " " + address[-1])
@@ -28,6 +26,23 @@ pins = {
     "Joe": 1111,
     "Jack": 2222
 }
+
+
+'''
+This is a tuple. Tuples are immutable! 
+
+You cannot do, for instance customer.append('Test')
+'''
+customer = ("John", 28, "Luxembourg")
+
+print(type(customer))
+
+print(
+    "Customer name: ", customer[0],
+    ". Age: ", customer[1],
+    ". Address: ", customer[2]
+)
+
 
 '''
 While correct user is not provided and has more tries, can go: 
