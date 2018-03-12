@@ -9,6 +9,50 @@ print(all([True, 1, True]))
 print(bool('0').bit_length())
 
 
+'''
+Open the file and shouw the fruits inside
+'''
+def read_fruit_file():
+    file = open('fruits.txt')
+    print('Opened file type: ' + str(type(file)))
+    file_content = file.read()
+
+    print("\n")
+
+    for fruit in file_content.splitlines():
+        print(fruit)
+
+    print("\n")
+    
+    file.close()
+
+read_fruit_file();
+
+
+'''
+Convert Celcius degrees to Fahrenheit
+
+Formula: F = C × 9/5 + 32.
+'''
+def celcius_to_fahrenheit(celcious):
+    if type(celcious) != int and type(celcious) != float:
+        print('The celcius attribute should be a number')
+
+        return 0
+
+    if celcious < -273.15:
+        print('The minimum temperature that physical can reach is -273.15 ºC')
+
+        return 0
+
+    fahrenheit = celcious * 9 / 5 + 32
+
+    return fahrenheit
+
+celcius_to_fahrenheit(-273.16)
+print('35 celcius degrees is the same that ' + str(celcius_to_fahrenheit(35)) + ' fahrenheit degrees')
+
+
 # this is a list
 address = ['Flat Floor Street', '18', 'I will be removed']
 address.pop(2)
