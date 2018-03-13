@@ -8,9 +8,40 @@ Show Python builtin functions
 print(all([True, 1, True]))
 print(bool('0').bit_length())
 
+'''
+Create new file and insert content
+'''
+file_name = 'test-file.txt'
+file = open(file_name, 'w')
+
+numbers_list = [1, 2, 3]
+
+for i in numbers_list:
+    file.write(str(i) + "\n")
+
+file.close()
+
 
 '''
-Open the file and shouw the fruits inside
+Edit existent file, by adding new content. (Open as: append and read mode)
+'''
+file = open(file_name, 'a+')
+file.read()
+file.seek(1)
+file.write(str(2.5))
+file.close()
+
+'''
+Reading file content
+'''
+file = open(file_name, 'r')
+file_lines = file.read().splitlines()
+
+for line in file_lines:
+    print(file_name + " line: " + line)
+
+'''
+Open the file and show the fruits inside
 '''
 def read_fruit_file():
     file = open('fruits.txt')
@@ -20,11 +51,12 @@ def read_fruit_file():
     print("\n")
 
     for fruit in file_content.splitlines():
-        print(fruit)
+        print(fruit + ' has length of ' + str(len(fruit)))
 
     print("\n")
-    
+
     file.close()
+
 
 read_fruit_file();
 
@@ -49,7 +81,12 @@ def celcius_to_fahrenheit(celcious):
 
     return fahrenheit
 
-celcius_to_fahrenheit(-273.16)
+
+temperatures = [10, -20, -289, 100]
+
+for temperature in temperatures:
+    print(celcius_to_fahrenheit(temperature))
+
 print('35 celcius degrees is the same that ' + str(celcius_to_fahrenheit(35)) + ' fahrenheit degrees')
 
 
