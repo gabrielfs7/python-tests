@@ -1,0 +1,27 @@
+{
+  "apple" : [
+    "Apple description 1",
+    "Apple description 2"
+  ],
+  "avocado" : [
+    "Avocado description 1",
+    "Avocado description 2"
+  ],
+  "banana" : [
+    "Banana description 1"
+  ],
+  "coconut" : [
+    "Coconut description 1"
+  ],
+  "melon" : [
+    "Melon description 1",
+    "Melon description 2"
+  ],
+  "tomato" : [
+    "Tomato description 1"
+  ],
+  "watermelon" : [
+    "Watermelon description 1",
+    "Watermelon description 2"
+  ]
+}
