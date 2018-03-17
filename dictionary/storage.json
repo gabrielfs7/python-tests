@@ -13,9 +13,15 @@
   "coconut" : [
     "Coconut description 1"
   ],
+  "Grape" : [
+    "Grape description 1"
+  ],
   "melon" : [
     "Melon description 1",
     "Melon description 2"
+  ],
+  "STRAWBERRY" : [
+    "STRAWBERRY description 1"
   ],
   "tomato" : [
     "Tomato description 1"
