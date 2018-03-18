@@ -10,4 +10,15 @@ pip3.6 install glob2
 pip3.6 install pandas
 pip3.6 install ipython
 pip3.6 install xlrd
+pip3.6 install jupyter
+```
+
+### Execute Jupyter notebook on MAC OS
+
+For data analysis I am using Jupyter. You can find more information here:
+
+http://jupyter.org
+
+```bash
+/Library/Frameworks/Python.framework/Versions/3.6/bin/jupyter notebook
 ```

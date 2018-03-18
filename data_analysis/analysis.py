@@ -26,6 +26,11 @@ df1.loc[df1.Age >= 30, "Category"] = "Mature"
 df1.loc[df1.Age < 30, "Category"] = "Young"
 df1.loc[df1.Age >= 50, "Category"] = "Old"
 
+"""
+Se column index to be da column 'Name'
+"""
+df1 = df1.set_index("Name")
+
 data_df2 = []
 data_df2.append({"Profession": "Programmer", "Salary": 50000})
 data_df2.append({"Profession": "Engineer", "Salary": 70000})
@@ -40,6 +45,7 @@ It is possible to filter results. I.e: Get salaries > 40000
 """
 df2 = df2[df2.Salary > 40000]
 
+print(df1)
 print("\nMean age is %2.2f" % df1.Age.mean())
 print("Max age is %2.2f" % df1.Age.max())
 print("Min age is %2.2f" % df1.Age.min())
@@ -48,7 +54,6 @@ print("\nMean salary is $%2.2f" % df2.Salary.mean())
 print("Max salary is $%2.2f" % df2.Salary.max())
 print("Min salary is $%2.2f" % df2.Salary.min())
 
-exit();
 
 """
 It is possible to load data in many formats
