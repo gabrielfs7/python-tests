@@ -121,22 +121,37 @@ df1_5.drop(df1_5.columns[2:4],1)
 """
 It is possible to load data in many formats
 """
-print("\nFrom JSON")
 df3 = pandas.read_json("supermarkets.json")
-print(df3)
-
-print("\nFrom CSV")
 df4 = pandas.read_csv("supermarkets.csv")
-print(df4)
-
-print("\nFrom Excel")
 df5 = pandas.read_excel("supermarkets.xlsx", sheet_name=0)
-print(df5)
-
-print("\nFrom txt comma separated")
 df6 = pandas.read_csv("supermarkets-commas.txt")
-print(df6)
-
-print("\nFrom txt semi-colons separated")
 df7 = pandas.read_csv("supermarkets-semi-colons.txt", sep=";")
-print(df7)
+
+"""
+
+Add new column 'Continent' for the DataFrame with default value 'North America'
+
+"""
+df5_total_columns = df5.shape[0]
+df5["Continent"] = df5_total_columns*["North America"]
+
+"""
+
+Update column value for each row
+
+"""
+df5["Continent"] = df5["Country"] + ", " + df5["Continent"]
+
+"""
+
+Add a new row for DataFrame
+
+"""
+"""
+Add a new row for DataFrame
+"""
+new_id = 7
+df5 = df5.set_index("ID")
+df5_t = df5.T
+df5_t[new_id] = ["Center", "Florianopolis", "Santa Catarian", "Brazil", "Bistek", 700]
+df5 = df5_t.T
