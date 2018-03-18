@@ -59,6 +59,22 @@ It is possible to filter results. I.e: Get salaries > 40000
 """
 df2 = df2[df2.Salary > 40000]
 
+"""
+It is also possible to get objects by specific position index and 
+"""
+df1_index = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_index = df1_index.iloc[3, 1:3]
+print(df1_index)
+
+"""
+
+And get values from specific index positions and fields
+
+"""
+df1_index_value = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_index_value = df1_index_value.loc[3, "Name"]
+print(df1_index_value)
+
 print(df1)
 print("\nMean age is %2.2f" % df1.Age.mean())
 print("Max age is %2.2f" % df1.Age.max())
@@ -68,6 +84,39 @@ print("\nMean salary is $%2.2f" % df2.Salary.mean())
 print("Max salary is $%2.2f" % df2.Salary.max())
 print("Min salary is $%2.2f" % df2.Salary.min())
 
+"""
+
+It is possible to drop columns by name
+
+"""
+df1_2 = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_2.drop("Category",1)
+
+"""
+
+It is possible to drop rows by index
+
+"""
+df1_3 = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_3 = df1_3.set_index("ID")
+df1_3.drop("COD01",0)
+
+"""
+
+It is possible to drop rows by index positions ranges
+
+"""
+df1_4 = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_4 = df1_4.set_index("ID")
+df1_4.drop(df1_4.index[0:3],0)
+
+"""
+
+It is possible to drop columns by index positions ranges
+
+"""
+df1_5 = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
+df1_5.drop(df1_5.columns[2:4],1)
 
 """
 It is possible to load data in many formats
