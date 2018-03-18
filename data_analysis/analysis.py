@@ -8,14 +8,14 @@
 import pandas
 
 data_df1 = []
-data_df1.append(["John", 26, ""])
-data_df1.append(["Jane", 28, ""])
-data_df1.append(["Paul", 45, ""])
-data_df1.append(["Nana", 23, ""])
-data_df1.append(["Jeff", 35, ""])
-data_df1.append(["Alan", 52, ""])
+data_df1.append(["COD01", "John", 26, ""])
+data_df1.append(["COD02", "Jane", 28, ""])
+data_df1.append(["COD03", "Paul", 45, ""])
+data_df1.append(["COD04", "Nana", 23, ""])
+data_df1.append(["COD05", "Jeff", 35, ""])
+data_df1.append(["COD06", "Alan", 52, ""])
 
-df1 = pandas.DataFrame(data_df1, columns=["Name", "Age", "Category"])
+df1 = pandas.DataFrame(data_df1, columns=["ID", "Name", "Age", "Category"])
 
 """
 
@@ -27,9 +27,23 @@ df1.loc[df1.Age < 30, "Category"] = "Young"
 df1.loc[df1.Age >= 50, "Category"] = "Old"
 
 """
-Se column index to be da column 'Name'
+Se column index to be da column 'ID'
 """
-df1 = df1.set_index("Name")
+df1 = df1.set_index("ID")
+
+"""
+
+I can also create ranges for unique indexes.
+In this case, from ID COD02 to COD04. 
+Bringing only from field 'Age' to 'Category'
+
+"""
+df1 = df1.loc["COD02":"COD04","Age":"Category"]
+
+"""
+And restrict for attributes. In this case, where Age < 45
+"""
+df1 = df1.loc[df1.Age < 45]
 
 data_df2 = []
 data_df2.append({"Profession": "Programmer", "Salary": 50000})
