@@ -8,6 +8,7 @@ A simple repository for my personal python learning tests...
 ```bash
 pip3.6 install glob2
 pip3.6 install pandas
+pip3.6 install numpy
 pip3.6 install ipython
 pip3.6 install xlrd
 pip3.6 install jupyter
@@ -23,7 +24,7 @@ http://jupyter.org
 To open Jupyter files on MAC type:
 
 ```bash
-cd <<PROJECT_DIR>>
+cd PROJECT_DIR
 /Library/Frameworks/Python.framework/Versions/3.6/bin/jupyter notebook
 ```
 
