@@ -20,6 +20,11 @@ For data analysis I am using Jupyter. You can find more information here:
 
 http://jupyter.org
 
+To open Jupyter files on MAC type:
+
 ```bash
+cd <<PROJECT_DIR>>
 /Library/Frameworks/Python.framework/Versions/3.6/bin/jupyter notebook
 ```
+
+Then go to the files tree and select the jupyter (.ipynb) file to edit. 
