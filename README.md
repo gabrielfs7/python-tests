@@ -11,6 +11,7 @@ pip3.6 install pandas
 pip3.6 install ipython
 pip3.6 install xlrd
 pip3.6 install jupyter
+pip3.6 install geopy
 ```
 
 ### Execute Jupyter notebook on MAC OS
