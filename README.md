@@ -15,6 +15,22 @@ pip3.6 install jupyter
 pip3.6 install geopy
 ```
 
+install opencv to MAC
+
+```bash
+pip3.6 install opencv-python==3.3.0.10
+brew install gtk+
+brew install opencv
+```
+
+### Troubleshooting
+
+I need to know available versions of a pip module? I.e. `opencv-python`:
+
+```bash
+pip3.6 install opencv-python==
+```
+
 ### Execute Jupyter notebook on MAC OS
 
 For data analysis I am using Jupyter. You can find more information here:
