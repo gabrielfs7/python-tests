@@ -39,6 +39,17 @@ def create_marker(name, elevation, latitude, longitude):
         parse_html=True
     )
 
+    if elevation < 1500:
+        return folium.CircleMarker(
+            location=[latitude, longitude],
+            popup=popup,
+            radius=6,
+            fill=True,
+            color='grey',
+            fill_color=icon_color,
+            fill_opacity=0.5
+        )
+
     icon = folium.Icon(
         color=icon_color,
         icon_color="yellow",
@@ -56,6 +67,18 @@ def create_marker(name, elevation, latitude, longitude):
 feature_group = folium.FeatureGroup(
     name="May Map"
 )
+
+#
+# This multi polygon adds a contour (polygon) surrounding the countries
+#
+multi_polygon_map_string = open("world.json", "r", encoding="utf-8-sig").read()
+
+geo_json = folium.GeoJson(
+    data=multi_polygon_map_string
+)
+
+
+feature_group.add_child(geo_json)
 
 
 for name, elevation, latitude, longitude in get_volcanoes_coordinates():
