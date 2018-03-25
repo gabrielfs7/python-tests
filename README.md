@@ -13,6 +13,7 @@ pip3.6 install ipython
 pip3.6 install xlrd
 pip3.6 install jupyter
 pip3.6 install geopy
+pip3.6 install folium
 ```
 
 install opencv to MAC
