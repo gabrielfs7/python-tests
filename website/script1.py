@@ -8,9 +8,9 @@ def home():
     return render_template("home.html")
 
 
-@app.route('/test')
-def test():
-    return 'My website home TEST'
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 
 """
