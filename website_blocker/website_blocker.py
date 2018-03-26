@@ -1,6 +1,14 @@
 import time
 from datetime import datetime
 
+"""
+
+To add to crontab, just add the following lines:
+
+@reboot python3.6 /YOUR_PATH/website_blocker/website_blocker.py
+
+"""
+
 hosts = "/etc/hosts"
 
 forbidden_addresses = [

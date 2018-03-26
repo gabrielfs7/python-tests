@@ -14,6 +14,7 @@ pip3.6 install xlrd
 pip3.6 install jupyter
 pip3.6 install geopy
 pip3.6 install folium
+pip3.6 install flask
 ```
 
 install opencv to MAC
