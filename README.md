@@ -44,8 +44,30 @@ Create the virtual environment, so specific python modules will be inside.
 python3.6 -m venv virtual
 cd website
 ./virtual/bin/pip3.6 install flask
+./virtual/bin/pip3.6 install gunicorn
 ./virtual/bin/python3.6 demo/script1.py
 ```
+
+
+##### Deploy Heroku
+
+1. Create a Heroku account: https://www.heroku.com/
+2. Download Heroku TollBelt: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+```bash
+cd website/demo
+heroku login
+heroku create <<YOUR_APP_NAME>>
+```
+
+3. Create necessary python dependencies file for Heroku:
+
+```bash
+./../virtual/bin/pip3.6 freeze > requirements.txt
+```
+
+**IMPORTANT**: Check supported python runtime for runtime.txt: https://devcenter.heroku.com/articles/python-runtimes#supported-python-runtimes
+
 
 
 ### Execute Jupyter notebook on MAC OS
