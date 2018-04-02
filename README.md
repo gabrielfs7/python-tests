@@ -54,10 +54,12 @@ cd website
 1. Create a Heroku account: https://www.heroku.com/
 2. Download Heroku TollBelt: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 
+Obs: Please, replace YOUR_APP_NAME to your chosen app name.
+
 ```bash
 cd website/demo
 heroku login
-heroku create <<YOUR_APP_NAME>>
+heroku create YOUR_APP_NAME
 ```
 
 3. Create necessary python dependencies file for Heroku:
@@ -78,7 +80,7 @@ cd website/demo
 git init
 git add .
 git commit -m 'my first commit'
-heroku git:remote --app py-app-gfs7
+heroku git:remote --app YOUR_APP_NAME
 git push heroku master
 heroku open
 ```
