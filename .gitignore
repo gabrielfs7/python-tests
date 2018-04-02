@@ -2,3 +2,4 @@
 *.tex
 .ipy*
 website/virtual
+website/demo/.git

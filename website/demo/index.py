@@ -17,7 +17,7 @@ def about():
 
 If we run this script directly, so __name__ will be "__main__".
 
-If this is script is run by different file, so __name__ will be "script1.py".     
+If this is script is run by different file, so __name__ will be "index.py".     
 
 """
 if __name__ == "__main__":

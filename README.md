@@ -45,7 +45,7 @@ python3.6 -m venv virtual
 cd website
 ./virtual/bin/pip3.6 install flask
 ./virtual/bin/pip3.6 install gunicorn
-./virtual/bin/python3.6 demo/script1.py
+./virtual/bin/python3.6 demo/index.py
 ```
 
 
@@ -63,12 +63,31 @@ heroku create <<YOUR_APP_NAME>>
 3. Create necessary python dependencies file for Heroku:
 
 ```bash
+cd website/demo
 ./../virtual/bin/pip3.6 freeze > requirements.txt
 ```
 
 **IMPORTANT**: Check supported python runtime for runtime.txt: https://devcenter.heroku.com/articles/python-runtimes#supported-python-runtimes
 
 
+4. Set remote git Heroku
+
+
+```bash
+cd website/demo
+git init
+git add .
+git commit -m 'my first commit'
+heroku git:remote --app py-app-gfs7
+git push heroku master
+heroku open
+```
+
+5. Get application info:
+
+```bash
+heroku info
+```
 
 ### Execute Jupyter notebook on MAC OS
 
