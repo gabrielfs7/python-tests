@@ -16,6 +16,7 @@ pip3.6 install geopy
 pip3.6 install folium
 pip3.6 install flask
 pip3.6 install virtualenv
+pip3.6 install psycopg2
 ```
 
 install opencv to MAC
