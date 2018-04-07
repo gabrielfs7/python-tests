@@ -17,6 +17,7 @@ pip3.6 install folium
 pip3.6 install flask
 pip3.6 install virtualenv
 pip3.6 install psycopg2
+pip3.6 install psycopg2-binary
 ```
 
 install opencv to MAC
