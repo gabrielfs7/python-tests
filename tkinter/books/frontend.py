@@ -54,8 +54,9 @@ book_list.grid(row=3, column=0, rowspan=6, columnspan=2)
 scrollbar = Scrollbar(window)
 scrollbar.grid(row=3, column=2, rowspan=6)
 
-scrollbar.configure(command=book_list.yview)
 book_list.configure(yscrollcommand=scrollbar.set)
+scrollbar.configure(command=book_list.yview)
+
 
 #
 # Button commands
@@ -153,12 +154,11 @@ def close_command():
     clear_entries()
     view_all_command()
 
-view_all_command()
+
 #
 # Bind events
 #
-
-
+view_all_command()
 book_list.bind('<<ListboxSelect>>', get_selected_row)
 
 
@@ -182,6 +182,5 @@ button_delete.grid(row=7, column=3)
 
 button_close = Button(window, text="Close", width=12, command=close_command)
 button_close.grid(row=8, column=3)
-
 
 window.mainloop()
