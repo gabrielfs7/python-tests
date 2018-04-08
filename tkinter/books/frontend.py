@@ -61,8 +61,35 @@ book_list.configure(yscrollcommand=scrollbar.set)
 #
 
 
+def clear_entries():
+    id_entry.delete(0, END)
+    title_entry.delete(0, END)
+    author_entry.delete(0, END)
+    year_entry.delete(0, END)
+    isbn_entry.delete(0, END)
+
+
+def get_selected_row(event):
+    book_list_index = book_list.curselection()[0]
+
+    book_id = book_list.get(book_list_index)[0]
+    book_title = book_list.get(book_list_index)[1]
+    book_author = book_list.get(book_list_index)[2]
+    book_year = book_list.get(book_list_index)[3]
+    book_isbn = book_list.get(book_list_index)[4]
+
+    clear_entries()
+
+    id_entry.insert(END, book_id)
+    author_entry.insert(END, book_author)
+    title_entry.insert(END, book_title)
+    year_entry.insert(END, book_year)
+    isbn_entry.insert(END, book_isbn)
+
+    return book_id
+
+
 def view_all_command():
-    # Delete from 0 to End of the list
     book_list.delete(0, END)
 
     for row in backend.select():
@@ -92,11 +119,38 @@ def create_command():
         isbn=isbn_entry.get()
     )
 
-    isbn_entry.delete(0, END)
-    title_entry.delete(0, END)
-    author_entry.delete(0, END)
-    year_entry.delete(0, END)
-    isbn_entry.delete(0, END)
+    clear_entries()
+    view_all_command()
+
+
+def update_command():
+    backend.update(
+        id=id_entry.get(),
+        title=title_entry.get(),
+        author=author_entry.get(),
+        year=year_entry.get(),
+        isbn=isbn_entry.get()
+    )
+
+    view_all_command()
+
+
+def delete_command():
+    backend.delete(id=id_entry.get())
+
+    view_all_command()
+
+
+def close_command():
+    clear_entries()
+    view_all_command()
+
+#
+# Bind events
+#
+
+
+book_list.bind('<<ListboxSelect>>', get_selected_row)
 
 
 #
@@ -111,13 +165,13 @@ button_search.grid(row=4, column=3)
 button_create = Button(window, text="Create", width=12, command=create_command)
 button_create.grid(row=5, column=3)
 
-button_update = Button(window, text="Update", width=12)
+button_update = Button(window, text="Update", width=12, command=update_command)
 button_update.grid(row=6, column=3)
 
-button_delete = Button(window, text="Delete", width=12)
+button_delete = Button(window, text="Delete", width=12, command=delete_command)
 button_delete.grid(row=7, column=3)
 
-button_close = Button(window, text="Close", width=12)
+button_close = Button(window, text="Close", width=12, command=close_command)
 button_close.grid(row=8, column=3)
 
 
