@@ -1,3 +1,6 @@
+"""
+Example using OO and file manipulation to simple handling Account operations
+"""
 
 
 class Account:
@@ -7,12 +10,7 @@ class Account:
     def deposit(self, amount):
         current_balance = self.balance()
 
-        new_balance = current_balance + amount
-
-        with open(self.file_path, 'w+') as file:
-            file.truncate()
-            file.write(str(new_balance))
-            file.close()
+        self.__change_balance(str(current_balance + amount))
 
     def withdraw(self, amount):
         current_balance = self.balance()
@@ -20,25 +18,22 @@ class Account:
         if current_balance > amount:
             Exception("Amout is bigger than current balance " + str(current_balance))
 
-        new_balance = current_balance - amount
-
-        with open(self.file_path, 'w+') as file:
-            file.truncate()
-            file.write(str(new_balance))
+        self.__change_balance(str(current_balance - amount))
 
     def balance(self):
         with open(self.file_path, 'r') as file:
             return float(file.read())
 
+    def __change_balance(self, amount):
+        with open(self.file_path, 'w+') as file:
+            file.truncate()
+            file.write(str(amount))
+            file.close()
+
 
 account = Account("balance.txt")
-
 print(str(account.balance()))
-
 account.deposit(50)
-
 print(str(account.balance()))
-
 account.withdraw(50)
-
 print(str(account.balance()))
