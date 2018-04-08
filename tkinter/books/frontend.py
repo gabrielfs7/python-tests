@@ -24,9 +24,8 @@ isbn_label.grid(row=2, column=2)
 #
 # Inputs
 #
-id_input = StringVar()
-id_entry = Entry(window, textvariable=id_input)
-id_entry.grid(row=0, column=0, columnspan=5)
+id_entry = Entry(window, state='readonly')
+id_entry.grid(row=0, column=1)
 
 title_input = StringVar()
 title_entry = Entry(window, textvariable=title_input)
@@ -62,7 +61,9 @@ book_list.configure(yscrollcommand=scrollbar.set)
 
 
 def clear_entries():
+    id_entry.configure(state="normal")
     id_entry.delete(0, END)
+    id_entry.configure(state="readonly")
     title_entry.delete(0, END)
     author_entry.delete(0, END)
     year_entry.delete(0, END)
@@ -80,7 +81,9 @@ def get_selected_row(event):
 
     clear_entries()
 
+    id_entry.configure(state="normal")
     id_entry.insert(END, book_id)
+    id_entry.configure(state="readonly")
     author_entry.insert(END, book_author)
     title_entry.insert(END, book_title)
     year_entry.insert(END, book_year)
@@ -145,6 +148,7 @@ def close_command():
     clear_entries()
     view_all_command()
 
+view_all_command()
 #
 # Bind events
 #
