@@ -31,9 +31,31 @@ class Account:
             file.close()
 
 
+"""
+Inheritance example in Python
+"""
+
+
+class Transfer(Account):
+
+    def __init__(self, file_path, fee):
+        Account.__init__(self, file_path)
+
+        self.__fee = fee
+
+    def transfer(self, amount):
+        self.withdraw(amount)
+        self.withdraw(self.__fee)
+
+
 account = Account("balance.txt")
 print(str(account.balance()))
 account.deposit(50)
 print(str(account.balance()))
 account.withdraw(50)
 print(str(account.balance()))
+
+transfer = Transfer("balance.txt", 1)
+transfer.transfer(24)
+print(str(transfer.balance()))
+transfer.deposit(25)
