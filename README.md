@@ -18,6 +18,7 @@ pip3.6 install flask
 pip3.6 install virtualenv
 pip3.6 install psycopg2
 pip3.6 install psycopg2-binary
+pip3.6 install pyinstaller
 ```
 
 install opencv to MAC
@@ -27,6 +28,14 @@ pip3.6 install opencv-python==3.3.0.10
 brew install gtk+
 brew install opencv
 ```
+
+### Create an executable to your application
+
+```bash
+cd tkinter/books
+pyinstaller --onefile --windowed frontend.py
+```
+
 
 ### Troubleshooting
 
