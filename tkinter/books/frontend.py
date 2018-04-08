@@ -72,8 +72,6 @@ def view_all_command():
 def search_command():
     book_list.delete(0, END)
 
-    print(title_entry.get())
-
     results = backend.select(
         title=title_entry.get(),
         author=author_entry.get(),
@@ -81,10 +79,24 @@ def search_command():
         isbn=isbn_entry.get()
     )
 
-    print(results)
-
     for row in results:
         book_list.insert(END, row)
+
+
+def create_command():
+    backend.insert(
+        id=isbn_entry.get(),
+        title=title_entry.get(),
+        author=author_entry.get(),
+        year=year_entry.get(),
+        isbn=isbn_entry.get()
+    )
+
+    isbn_entry.delete(0, END)
+    title_entry.delete(0, END)
+    author_entry.delete(0, END)
+    year_entry.delete(0, END)
+    isbn_entry.delete(0, END)
 
 
 #
@@ -96,7 +108,7 @@ button_view.grid(row=3, column=3)
 button_search = Button(window, text="Search", width=12, command=search_command)
 button_search.grid(row=4, column=3)
 
-button_create = Button(window, text="Create", width=12)
+button_create = Button(window, text="Create", width=12, command=create_command)
 button_create.grid(row=5, column=3)
 
 button_update = Button(window, text="Update", width=12)
