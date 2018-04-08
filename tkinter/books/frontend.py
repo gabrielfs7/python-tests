@@ -1,9 +1,11 @@
 from tkinter import *
-import backend
+from backend import Database
 from datetime import datetime
 
 window = Tk()
 window.wm_title("Book Store")
+
+database = Database()
 
 #
 # Labels
@@ -101,14 +103,14 @@ def get_selected_row(event):
 def view_all_command():
     book_list.delete(0, END)
 
-    for row in backend.select():
+    for row in database.select():
         book_list.insert(END, row)
 
 
 def search_command():
     book_list.delete(0, END)
 
-    results = backend.select(
+    results = database.select(
         title=title_entry.get(),
         author=author_entry.get(),
         year=year_entry.get(),
@@ -120,7 +122,7 @@ def search_command():
 
 
 def create_command():
-    backend.insert(
+    database.insert(
         title=title_entry.get(),
         author=author_entry.get(),
         year=year_entry.get(),
@@ -132,7 +134,7 @@ def create_command():
 
 
 def update_command():
-    backend.update(
+    database.update(
         id=id_entry.get(),
         title=title_entry.get(),
         author=author_entry.get(),
@@ -144,7 +146,7 @@ def update_command():
 
 
 def delete_command():
-    backend.delete(id=id_entry.get())
+    database.delete(id=id_entry.get())
     clear_entries()
 
     view_all_command()
