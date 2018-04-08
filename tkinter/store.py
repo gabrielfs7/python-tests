@@ -1,3 +1,8 @@
+"""
+
+This is an example how to integrate Postgres database to python scripts
+
+"""
 import psycopg2
 
 host = '127.0.0.1'
