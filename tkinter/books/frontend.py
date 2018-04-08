@@ -1,4 +1,5 @@
 from tkinter import *
+import backend
 
 window = Tk(screenName="Book Store")
 
@@ -56,12 +57,43 @@ scrollbar.configure(command=book_list.yview)
 book_list.configure(yscrollcommand=scrollbar.set)
 
 #
+# Button commands
+#
+
+
+def view_all_command():
+    # Delete from 0 to End of the list
+    book_list.delete(0, END)
+
+    for row in backend.select():
+        book_list.insert(END, row)
+
+
+def search_command():
+    book_list.delete(0, END)
+
+    print(title_entry.get())
+
+    results = backend.select(
+        title=title_entry.get(),
+        author=author_entry.get(),
+        year=year_entry.get(),
+        isbn=isbn_entry.get()
+    )
+
+    print(results)
+
+    for row in results:
+        book_list.insert(END, row)
+
+
+#
 # Buttons
 #
-button_view = Button(window, text="View all", width=12)
+button_view = Button(window, text="View all", width=12, command=view_all_command)
 button_view.grid(row=3, column=3)
 
-button_search = Button(window, text="Search", width=12)
+button_search = Button(window, text="Search", width=12, command=search_command)
 button_search.grid(row=4, column=3)
 
 button_create = Button(window, text="Create", width=12)
@@ -75,5 +107,6 @@ button_delete.grid(row=7, column=3)
 
 button_close = Button(window, text="Close", width=12)
 button_close.grid(row=8, column=3)
+
 
 window.mainloop()

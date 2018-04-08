@@ -79,6 +79,3 @@ Testing:
 # update(3, 'Clean coder - New Edition', 'Author', 2010, 123456)
 
 # print(select())
-
-
-connection.close()

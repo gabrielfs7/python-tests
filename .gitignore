@@ -4,3 +4,4 @@
 website/virtual
 website/demo/.git
 tkinter/books/sqlite.db
+*__pycache__
