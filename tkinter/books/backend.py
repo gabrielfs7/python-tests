@@ -11,7 +11,7 @@ connection = sqlite3.connect(db_path)
 def create_table():
     cursor = connection.cursor()
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS books (id INTEGER, title TEXT, author TEXT, year INTEGER, isbn INTEGER)"
+        "CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)"
     )
     connection.commit()
 
@@ -25,17 +25,12 @@ def update(id, title, author, year, isbn):
     connection.commit()
 
 
-def insert(id, title, author, year, isbn):
+def insert(title, author, year, isbn):
     cursor = connection.cursor()
-    cursor.execute("SELECT id FROM books WHERE id = ?", (id, ))
-
-    result = cursor.fetchone()
-
-    if result is not None:
-        return update(id, title, author, year, isbn)
-
-    cursor = connection.cursor()
-    cursor.execute("INSERT INTO books VALUES(?, ?, ?, ?, ?)", (id, title, author, year, isbn))
+    cursor.execute(
+        "INSERT INTO books(id, title, author, year, isbn) VALUES(NULL, ?, ?, ?, ?)",
+        (title, author, year, isbn)
+    )
     connection.commit()
 
 

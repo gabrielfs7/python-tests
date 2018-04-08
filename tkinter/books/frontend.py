@@ -1,7 +1,9 @@
 from tkinter import *
 import backend
+from datetime import datetime
 
-window = Tk(screenName="Book Store")
+window = Tk()
+window.wm_title("Book Store")
 
 #
 # Labels
@@ -71,6 +73,11 @@ def clear_entries():
 
 
 def get_selected_row(event):
+    current_selection = book_list.curselection()
+
+    if len(current_selection) == 0:
+        return
+
     book_list_index = book_list.curselection()[0]
 
     book_id = book_list.get(book_list_index)[0]
@@ -88,8 +95,6 @@ def get_selected_row(event):
     title_entry.insert(END, book_title)
     year_entry.insert(END, book_year)
     isbn_entry.insert(END, book_isbn)
-
-    return book_id
 
 
 def view_all_command():
@@ -115,7 +120,6 @@ def search_command():
 
 def create_command():
     backend.insert(
-        id=isbn_entry.get(),
         title=title_entry.get(),
         author=author_entry.get(),
         year=year_entry.get(),
@@ -140,6 +144,7 @@ def update_command():
 
 def delete_command():
     backend.delete(id=id_entry.get())
+    clear_entries()
 
     view_all_command()
 
