@@ -8,7 +8,7 @@ import cv2
 with_color = 1
 
 # This is a numpay array containing the pixel matrix for the image
-image = cv2.imread('galaxy.jpg', with_color)
+image = cv2.imread('sample-images/galaxy.jpg', with_color)
 
 # Show image before resize
 cv2.imshow('Galaxy', image)
@@ -26,7 +26,7 @@ new_image = cv2.resize(image, (new_image_height, new_image_with))
 cv2.imshow('Galaxy resized', new_image)
 
 # Save resized image
-cv2.imwrite('galaxy2.jpg', new_image)
+cv2.imwrite('sample-images/galaxy2.jpg', new_image)
 
 # Keep images on the screen for 5 seconds
 cv2.waitKey(5000)
