@@ -1,3 +1,11 @@
+"""
+
+1. Detect faces in images using opencv
+2. Draw rectangles on the found faces
+3. Show image with the rectangles
+
+"""
+
 import cv2
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml');
