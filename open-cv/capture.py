@@ -3,6 +3,7 @@
 1. Capture camera image
 2. Resize image and show
 3. Add information for image
+3. Detect the face and draw an rectangle around it
 
 IMPORTANT: If camera fail on MacOS, type "sudo killall VDCAssistant" in the terminal
 
@@ -10,6 +11,8 @@ IMPORTANT: If camera fail on MacOS, type "sudo killall VDCAssistant" in the term
 
 import cv2
 from datetime import datetime
+from FaceDetector import FaceDetector
+
 
 video = cv2.VideoCapture(0)
 
@@ -17,21 +20,20 @@ count_frames = 0
 last_second = 0
 total_frames = 0
 
+detector = FaceDetector()
+
 while True:
     # Get video status and numpay image array
     is_video_running, numpay_frame = video.read()
 
-    # Convert image to gray
-    numpay_frame_gray = cv2.cvtColor(numpay_frame, cv2.COLOR_RGB2GRAY)
-
     # Resize the image
-    image_width = numpay_frame_gray.shape[0]
-    image_height = numpay_frame_gray.shape[1]
+    image_width = numpay_frame.shape[0]
+    image_height = numpay_frame.shape[1]
 
     image_new_width = int(image_width / 1.5)
     image_new_height = int(image_height / 1.5)
 
-    numpay_frame_gray = cv2.resize(numpay_frame_gray, (image_new_height, image_new_width))
+    numpay_frame = cv2.resize(numpay_frame, (image_new_height, image_new_width))
 
     # Calculate video FPS
     now = datetime.now()
@@ -50,8 +52,10 @@ while True:
     fontColor = (255, 255, 255)
     lineType = 2
 
+    numpay_frame = detector.draw_rectangle_by_array(numpay_frame)
+
     cv2.putText(
-        numpay_frame_gray,
+        numpay_frame,
         now.strftime('%Y/%m/%d %H:%M:%S') + ' - ' + str(total_frames) + 'fps',
         fontPositionTopLeftCorner,
         fontFace,
@@ -60,7 +64,7 @@ while True:
         lineType
     )
 
-    cv2.imshow('Capturing from camera', numpay_frame_gray)
+    cv2.imshow('Capturing from camera', numpay_frame)
 
     pressed_key = cv2.waitKey(100) # Wait for 100 milliseconds to capture the image
 
