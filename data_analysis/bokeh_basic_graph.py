@@ -1,10 +1,14 @@
 # Import Bokeh
 from bokeh.plotting import figure
 from bokeh.io import output_file, show
+import pandas
+
+# Create a DataFrame based on CSV file
+data_frame = pandas.read_csv("bokeh_basic_graph.csv")
 
 # prepare some data
-x = [1, 2, 3, 4, 5]
-y = [6, 7, 8, 9, 10]
+x = data_frame['X']
+y = data_frame['Y']
 
 # Prepare output file
 output_file("Line.html")
