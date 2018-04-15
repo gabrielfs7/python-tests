@@ -3,7 +3,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, show
 
 # Read info from CSV file and make a DataFrame
-data_frame = pandas.read_csv("bachelors.csv")
+data_frame = pandas.read_csv("bokeh_bachelors.csv")
 
 # Set columns to figure based on the grath
 x = data_frame['Year']
