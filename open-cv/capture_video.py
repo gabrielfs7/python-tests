@@ -19,11 +19,12 @@ while True:
 
     cv2.imshow('Capturing from camera', video_capture.get_numpay_frame())
 
-    pressed_key = cv2.waitKey(100) # Wait for 100 milliseconds to capture the image
+    # Wait for 100 milliseconds to capture the image
+    pressed_key = cv2.waitKey(100)
 
     # Break the loop if q is pressed
     if pressed_key == ord('q'):
         break
 
 video_capture.release()
-cv2.destroyWindows()
+cv2.destroyAllWindows()

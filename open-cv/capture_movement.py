@@ -10,12 +10,19 @@ IMPORTANT: If camera fail on MacOS, type "sudo killall VDCAssistant" in the term
 """
 
 import cv2
+import pandas
+from datetime import datetime
 
 video_capture = cv2.VideoCapture(0)
 first_frame = None
+status_list = [None, None]
+times = []
+df = pandas.DataFrame(columns=['Start', 'End'])
 
 while True:
 
+    # Default is not activity
+    status = 0
     check, frame = video_capture.read()
 
     # Make image gray
@@ -49,15 +56,43 @@ while True:
 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
+        status = 1
+
+    # Append current status activity
+    status_list.append(status)
+
+    # Save movements detection interval
+    if status_list[-1] == 1 and status_list[-2] == 0:
+        times.append(datetime.now())
+
+    # Save movements detection interval
+    if status_list[-1] == 0 and status_list[-2] == 1:
+        times.append(datetime.now())
+
     # Display images
     cv2.imshow("Gray Frame", gray_frame)
     cv2.imshow("Delta Frame", delta_frame)
     cv2.imshow("Threshold Frame", threshold_frame)
-    cv2.imshow("Threshold Frame", frame)
+    cv2.imshow("Normal Frame", frame)
 
     # Break the loop if q is pressed
     if cv2.waitKey(100) == ord('q'):
+        if status == 1:
+            times.append(datetime.now())
+
         break
 
+# Iterate times jumping by 2 steps
+start = 0
+stop = len(times)
+step= 2
+
+# Save movement detections to a CSV file
+for i in range(start, stop, step):
+    df = df.append({"Start" : times[i], "End" : times[i + 1]}, ignore_index=True)
+
+df.to_csv("times.csv")
+
+# Close the video and destroy windows
 video_capture.release()
-cv2.destroyWindows()
+cv2.destroyAllWindows()
