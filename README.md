@@ -19,6 +19,7 @@ pip3.6 install virtualenv
 pip3.6 install psycopg2
 pip3.6 install psycopg2-binary
 pip3.6 install pyinstaller
+pip3.6 install bokeh
 ```
 
 install opencv to MAC
