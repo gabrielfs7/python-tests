@@ -11,7 +11,7 @@ x = data_frame['X']
 y = data_frame['Y']
 
 # Prepare output file
-output_file("Line.html")
+output_file("line_from_csv.html")
 
 # Create a figure object
 f = figure()
