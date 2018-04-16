@@ -12,6 +12,8 @@ IMPORTANT: If camera fail on MacOS, type "sudo killall VDCAssistant" in the term
 import cv2
 import pandas
 from datetime import datetime
+from bokeh.plotting import figure, show, output_file
+from bokeh.models import HoverTool, ColumnDataSource
 
 video_capture = cv2.VideoCapture(0)
 first_frame = None
@@ -61,6 +63,9 @@ while True:
     # Append current status activity
     status_list.append(status)
 
+    # Make list be only last to registries to avoid memory problems
+    status_list = status_list[-2:]
+
     # Save movements detection interval
     if status_list[-1] == 1 and status_list[-2] == 0:
         times.append(datetime.now())
@@ -96,3 +101,36 @@ df.to_csv("times.csv")
 # Close the video and destroy windows
 video_capture.release()
 cv2.destroyAllWindows()
+
+"""
+
+Generate graph
+
+"""
+# Format date to HoverTool
+df['Start_format'] = df['Start'].dt.strftime("%Y-%m-%d %H:%M:%s")
+df['End_format'] = df['End'].dt.strftime("%Y-%m-%d %H:%M:%s")
+
+# Necessary for hover
+cds = ColumnDataSource(df)
+
+# Create figure
+f = figure(x_axis_type="datetime", height=80, width=500, sizing_mode='scale_width', title="Movement Capture")
+
+# Remove Y axis interval marker
+f.yaxis.minor_tick_line_color = None
+
+# Eliminate graph grid
+f.ygrid[0].ticker.desired_num_ticks = 1
+
+hover = HoverTool(tooltips=[("Start", "@Start_format"), ("End", "@End_format")])
+f.add_tools(hover)
+
+# left and right point to cds indexes
+q = f.quad(left='Start', right='End', bottom=0, top=1, color='green', source=cds)
+
+# Output graph
+output_file("quad_from_capture_movement.html")
+
+# Show graph
+show(f)
