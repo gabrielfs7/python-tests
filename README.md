@@ -20,6 +20,7 @@ pip3.6 install psycopg2
 pip3.6 install psycopg2-binary
 pip3.6 install pyinstaller
 pip3.6 install bokeh
+pip3.6 install bs4
 ```
 
 install opencv to MAC
