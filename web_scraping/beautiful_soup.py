@@ -1,4 +1,5 @@
 import requests
+import pandas
 from bs4 import BeautifulSoup
 
 response = requests.get('http://www.saojose.sc.gov.br/index.php/sao-jose/publicacoes-legais/categoria/concursos')
@@ -53,10 +54,18 @@ def get_news_description(news_tag):
     return ''
 
 
+new_list = []
+
 for news_tag in get_news_tags():
-    print("Title: " + get_news_title(news_tag))
-    print("Keywords: " + get_news_keywords(news_tag))
-    print("Event Date: " + get_news_event_date(news_tag))
-    print("Description: " + get_news_description(news_tag))
-    print("Link: " + get_news_link(news_tag))
-    print("\n")
+    dictionary = {}
+    dictionary["Title"] = get_news_title(news_tag)
+    dictionary["Keywords"] = get_news_keywords(news_tag)
+    dictionary["Date"] = get_news_event_date(news_tag)
+    dictionary["Description"] = get_news_description(news_tag)
+    dictionary["Link"] = get_news_link(news_tag)
+
+    new_list.append(dictionary)
+
+
+data_frame = pandas.DataFrame(new_list)
+data_frame.to_csv("beautiful_soup.csv")
