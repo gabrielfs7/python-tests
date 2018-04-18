@@ -21,6 +21,8 @@ pip3.6 install psycopg2-binary
 pip3.6 install pyinstaller
 pip3.6 install bokeh
 pip3.6 install bs4
+pip3.6 install fix_yahoo_finance
+pip3.6 install pandas_datareader
 ```
 
 install opencv to MAC
