@@ -10,8 +10,8 @@ from bokeh.plotting import figure, show, output_file
 from bokeh.embed import components
 from bokeh.resources import CDN
 
-# Data from 1st to 10th of March 2016
-start = datetime.datetime(2015, 11, 1)
+# Data interval for stock search
+start = datetime.datetime(2016, 2, 1)
 end = datetime.datetime(2016, 3, 11)
 
 # Example for Google here: https://pandas-datareader.readthedocs.io/en/latest/remote_data.html#google-finance
@@ -65,13 +65,6 @@ f.rect(
 If you want to embed the graph in your website, you can do that
 
 """
-javascript, html = components(f)  # Javascript and HTML content
-cdn_js = CDN.js_files  # CDN js links
-cdn_css = CDN.css_files  # CDN css links
-
-
-# Output file
-output_file("stock_analysis.html")
-
-# Show file on browser
-show(f)
+candlestick_javascript, candlestick_html = components(f)  # Javascript and HTML content
+candlestick_cdn_javascript = CDN.js_files[0]  # CDN js links
+candlestick_cdn_css = CDN.css_files[0]  # CDN css links

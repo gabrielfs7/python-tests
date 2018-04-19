@@ -2,4 +2,11 @@
 {% block content %}
 <h1>Home</h1>
 <p>My home page</p>
+
+<script src="{{ candlestick_cdn_javascript | safe }}" type="text/javascript"></script>
+<link rel="stylesheet" href="{{ candlestick_cdn_css | safe }}" />
+
+{{ candlestick_javascript | safe }}
+{{ candlestick_html | safe }}
+
 {% endblock %}
