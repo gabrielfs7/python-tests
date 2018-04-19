@@ -56,10 +56,14 @@ Create the virtual environment, so specific python modules will be inside.
 `That is good to isolate your application environment.`
 
 ```bash
-python3.6 -m venv virtual
 cd website
+python3.6 -m venv virtual
 ./virtual/bin/pip3.6 install flask
 ./virtual/bin/pip3.6 install gunicorn
+./virtual/bin/pip3.6 install bokeh
+./virtual/bin/pip3.6 install bs4
+./virtual/bin/pip3.6 install fix_yahoo_finance
+./virtual/bin/pip3.6 install pandas_datareader
 ./virtual/bin/python3.6 demo/index.py
 ```
 
