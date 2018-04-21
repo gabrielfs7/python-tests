@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Collector App</title>
+    <link rel="stylesheet" href="../static/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload a file</h1>
+
+        {% if file_name %}
+            <div class="success">
+                File [{{ file_name | safe }}] uploaded.
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+            <input
+                required
+                name="file"
+                type="file"
+                placeholder="Provide the file"/>
+            <button type="submit">Send file &raquo;</button>
+        </form>
+    </div>
+</body>
+</html>

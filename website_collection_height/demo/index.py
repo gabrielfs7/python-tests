@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from email.mime.text import MIMEText
 from sqlalchemy.sql import func
+from werkzeug import secure_filename
 import smtplib
 
 app=Flask(__name__)
@@ -99,9 +100,45 @@ def home():
     )
 
 
-@app.route('/results')
-def about():
-    return render_template("about.html")
+@app.route('/upload', methods=['POST', 'GET'])
+def upload():
+    """
+    Example how to upload file:
+
+    :return:
+    """
+    success=False
+    file_name = ''
+
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        uploaded_file_content = uploaded_file.read()
+
+        file_name = "uploaded" + uploaded_file.filename
+
+        uploaded_file.save(secure_filename(file_name))
+
+        success = True
+
+    return render_template(
+        "upload.html",
+        success=success,
+        file_name=file_name
+    )
+
+
+@app.route('/download')
+def download():
+    """
+    Example how to download file:
+
+    :return:
+    """
+    return send_file(
+        "../../README.md",
+        attachment_filename='README.md',
+        as_attachment=True
+    )
 
 if __name__ == "__main__":
     app.debug = True

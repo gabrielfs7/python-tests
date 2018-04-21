@@ -120,6 +120,12 @@ heroku config --app YOUR_APP_NAME
 
 ```bash
 heroku addons:create heroku-postgresql:hobby-dev --app YOUR_APP_NAME
+```
+
+An to access postgres inside heroku:
+
+```bash
+heroku pg:psql --app YOUR_APP_NAME
 ``` 
 
 7. To run programs in heroku:
