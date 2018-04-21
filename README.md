@@ -110,6 +110,29 @@ heroku open
 ```bash
 heroku info
 ```
+or more config info:
+
+```bash
+heroku config --app YOUR_APP_NAME
+```
+
+6. Create heroku database.
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev --app YOUR_APP_NAME
+``` 
+
+7. To run programs in heroku:
+
+```bash
+heroku run python
+```
+
+or to run bash:
+
+```bash
+heroku run bash
+```
 
 ### Execute Jupyter notebook on MAC OS
 

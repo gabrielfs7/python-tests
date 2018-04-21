@@ -5,7 +5,8 @@ from sqlalchemy.sql import func
 import smtplib
 
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@127.0.0.1/height_collector'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@127.0.0.1/height_collector'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://orauhbhhnkcojk:c12dbc0485914eee2cf3cbc9b1901c229faf075678c9c535f9c016d3dfc03b9f@ec2-54-235-193-34.compute-1.amazonaws.com:5432/dak32a6lbkctfl?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
@@ -103,4 +104,5 @@ def about():
     return render_template("about.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.debug = True
+    app.run()
