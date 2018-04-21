@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from email.mime.text import MIMEText
+from sqlalchemy.sql import func
 import smtplib
 
 app=Flask(__name__)
@@ -10,22 +11,29 @@ db = SQLAlchemy(app)
 
 
 def send_mail(email, height):
+    """
+    Send e-mail for user
+
+    :param email:
+    :param height:
+    :return:
+    """
     from_email = "XXXX@gmail.com"
     from_pass = "XXXXX"
 
     subject = "Height data"
-    message = "Hello, you sent us your email %s and height %s." % (email, height)
+    body = "Hello, you sent us your email %s and height %s." % (email, height)
 
-    msg = MIMEText(message, 'html')
-    msg['Subject'] = subject
-    msg['To'] = email
-    msg['From'] = from_email
+    message = MIMEText(body, 'html')
+    message['Subject'] = subject
+    message['To'] = email
+    message['From'] = from_email
 
     gmail = smtplib.SMTP('smtp.gmail.com', 587)
     gmail.ehlo()
     gmail.starttls()
     gmail.login(from_email, from_pass)
-    gmail.send_message()
+    gmail.send_message(message)
 
 
 class Data(db.Model):
@@ -55,6 +63,8 @@ def home():
     form_email_repeated = False
     form_email = ''
     form_height = ''
+    average_height = 0
+    total_people  = 0
 
     if request.method == 'POST':
         form_email = request.form['email']
@@ -67,8 +77,13 @@ def home():
             db.session.add(data)
             db.session.commit()
 
-            send_mail(form_email, form_height)
-
+            # Uncomment this line if you want to send e-mail
+            """
+            send_mail(form_email, form_height) 
+            """
+            average_height = db.session.query(func.avg(Data.height)).scalar()
+            average_height = round(average_height)
+            total_people = db.session.query(Data.height).count()
             form_success = True
             form_email_repeated = False
 
@@ -77,7 +92,9 @@ def home():
         form_email=form_email,
         form_height=form_height,
         form_success=form_success,
-        form_email_repeated=form_email_repeated
+        form_email_repeated=form_email_repeated,
+        average_height=average_height,
+        total_people=total_people
     )
 
 
