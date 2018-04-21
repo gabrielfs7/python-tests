@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Collector App</title>
+    <link rel="stylesheet" href="../static/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Collecting Height</h1>
+        <h3>Fill with your data</h3>
+
+        {% if form_success %}
+            {% include 'success.html' %}
+        {% endif %}
+
+        {% if form_email_repeated %}
+            {% include 'repeated.html' %}
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('home') }}">
+            <input
+                required
+                name="email"
+                type="email"
+                value="{{ form_email | safe }}"
+                placeholder="Enter your e-mail"/>
+            <input
+                required
+                name="height"
+                type="number"
+                value="{{ form_height | safe }}"
+                placeholder="Enter your height"
+                min="50"
+                max="300"
+                step="0.1"/>
+            <button type="submit">Send information &raquo;</button>
+        </form>
+    </div>
+</body>
+</html>

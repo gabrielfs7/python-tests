@@ -23,6 +23,7 @@ pip3.6 install bokeh
 pip3.6 install bs4
 pip3.6 install fix_yahoo_finance
 pip3.6 install pandas_datareader
+pip3.6 install Flask-SQLAlchemy
 ```
 
 install opencv to MAC
