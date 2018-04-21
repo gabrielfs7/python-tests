@@ -1,10 +1,31 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from email.mime.text import MIMEText
+import smtplib
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@127.0.0.1/height_collector'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
+
+
+def send_mail(email, height):
+    from_email = "XXXX@gmail.com"
+    from_pass = "XXXXX"
+
+    subject = "Height data"
+    message = "Hello, you sent us your email %s and height %s." % (email, height)
+
+    msg = MIMEText(message, 'html')
+    msg['Subject'] = subject
+    msg['To'] = email
+    msg['From'] = from_email
+
+    gmail = smtplib.SMTP('smtp.gmail.com', 587)
+    gmail.ehlo()
+    gmail.starttls()
+    gmail.login(from_email, from_pass)
+    gmail.send_message()
 
 
 class Data(db.Model):
@@ -46,9 +67,10 @@ def home():
             db.session.add(data)
             db.session.commit()
 
+            send_mail(form_email, form_height)
+
             form_success = True
             form_email_repeated = False
-
 
     return render_template(
         "index.html",
