@@ -20,13 +20,14 @@
 
         {% if form_error %}
             <div class="error">
-                File is wrong.
+                File data is wrong. Please verify if it have correct columns and values.
             </div>
         {% endif %}
 
         <form method="POST" action="{{ url_for('home') }}" enctype="multipart/form-data">
             <input
                 required
+                accept=".csv"
                 name="file"
                 type="file"
                 placeholder="Select you CSV file"/>
