@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geocoding Web Service</title>
+    <link rel="stylesheet" href="../static/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Geocoding Web Service</h1>
+        <h3>Provide a CSV file to get latitude and longitude</h3>
+
+        {% if form_success %}
+            <div class="success">
+                File successfuly upload. See the result above.
+            </div>
+
+            {% include 'table.html' %}
+        {% endif %}
+
+        {% if form_error %}
+            <div class="error">
+                File is wrong.
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('home') }}" enctype="multipart/form-data">
+            <input
+                required
+                name="file"
+                type="file"
+                placeholder="Select you CSV file"/>
+            <button type="submit">Process</button>
+        </form>
+    </div>
+</body>
+</html>
